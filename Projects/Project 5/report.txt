@@ -1,0 +1,66 @@
+Ken DENG
+UCLA ID# 205452321
+
+1.
+The first time I tried to create an implement for function buyTicket in BoxOffice.cpp, I had trouble using functions like .isMatineeTicket(). Hence, what I did was basically rewrite the whole thing in MovieTicket.cpp, and I found out that it was too redundant, and there must be some techniques for me to use .isMatineeTicket() directly.
+
+The first time I did was something like:
+if(MovieTicket::isMatineeTicket(movie, day, time, kind, type)){…}
+Because I thought isMatineeTicket is a function defined in MovieTicket.h, so maybe I should use MovieTicket:: to specify which class.
+Then I thought .isMatineeTicket() should have no argument inside the parentheses, and it is actually a “.” method, which should have a variable of MovieTicket type infant of it. So I tried this at the second time:
+MovieTicket mt(movie, day, time, kind, type);
+if(MovieTicket::mt.isMatineeTicket()){…}
+However, this also failed with an alert “No member named 'mt' in 'MovieTicket'; did you mean simply 'mt’?”. Therefore, I realized that is not required MovieTicket:: here, and I modified it as:
+MovieTicket mt(movie, day, time, kind, type);
+if(mt.isMatineeTicket()){…}
+And this time everything worked well.
+
+2.
+    
+    //test for constructors
+    BoxOffice bo1("address1", "The Lake House");
+    MovieTicket mt1("The Lake House", MovieTicket::Day::MONDAY, MovieTicket::Time::TWOPM, MovieTicket::Kind::BOMB, MovieTicket::Type::ADULT);
+    MovieTicket mt2("The Mountain Mansion", MovieTicket::Day::SUNDAY, MovieTicket::Time::MIDNIGHT, MovieTicket::Kind::BLOCKBUSTER, MovieTicket::Type::SENIOR);
+    
+
+    //test for MovieTicket getters
+    std::cout << "getMovie() = " << mt1.getMovie() << " getDay() = " << mt1.getDay() << " getTime() = " << mt1.getTime() << " getKind() = " << mt1.getKind() << " getType = " << mt1.getType() << std::endl;
+    
+    //test for MovieTicket trackers
+    std::cout << "isWeekendTicket() = " << mt1.isWeekendTicket() << " isWeekdayTicket() = " << mt1.isWeekdayTicket() << " isMatineeTicket() = " << mt1.isMatineeTicket() << " isEveningTicket() = " << mt1.isEveningTicket() << std::endl;
+    
+    //test for MovieTicket ticket price
+    std::cout << "mt1 ticket price = " << mt1.getCost() << " mt2 ticket price = " << mt2.getCost() << std::endl;
+    
+    //test for BoxOffice getters
+    std::cout << "getAddress() = " << bo1.getAddress() << " whatsPlaying() = " << bo1.whatsPlaying() << std::endl;
+    
+    //test if buyTicket in class BoxOffice would produce correct increment for ticket trackers and total revenue
+    bo1.buyTicket("The Lake House", MovieTicket::Day::MONDAY, MovieTicket::Time::TWOPM, MovieTicket::Kind::BOMB, MovieTicket::Type::ADULT);
+    std::cout << std::to_string(bo1.getRevenue());
+    std::cout << " getMatineeTickets() = " << bo1.getMatineeTickets() << " getEveningTickets() = " << bo1.getEveningTickets() << " getWeekdayTickets() = " << bo1.getWeekdayTickets() << " getWeekendTickets() = " << bo1.getWeekendTickets() << std::endl;
+    bo1.buyTicket("The Lake House", MovieTicket::Day::SUNDAY, MovieTicket::Time::MIDNIGHT, MovieTicket::Kind::BLOCKBUSTER, MovieTicket::Type::SENIOR);
+    std::cout << std::to_string(bo1.getRevenue());
+    std::cout << " getMatineeTickets() = " << bo1.getMatineeTickets() << " getEveningTickets() = " << bo1.getEveningTickets() << " getWeekdayTickets() = " << bo1.getWeekdayTickets() << " getWeekendTickets() = " << bo1.getWeekendTickets() << std::endl;
+    
+    //test if buyTicket in class BoxOffice would catch any logic errors if movie != mMovie
+    try
+    {
+        MovieTicket m = bo1.buyTicket("The Mountain Mansion", MovieTicket::Day::SUNDAY, MovieTicket::Time::MIDNIGHT, MovieTicket::Kind::BLOCKBUSTER, MovieTicket::Type::SENIOR);
+        
+        assert(false);
+    }
+    catch(std::logic_error)
+    {
+        assert(true);
+    }
+
+    try
+    {
+        MovieTicket m = bo1.buyTicket("The Lake House", MovieTicket::Day::MONDAY, MovieTicket::Time::TWOPM, MovieTicket::Kind::BOMB, MovieTicket::Type::ADULT);
+        assert(true);
+    }
+    catch(std::logic_error)
+    {
+        assert(false);
+    }

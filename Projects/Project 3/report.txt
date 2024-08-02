@@ -1,0 +1,36 @@
+Ken DENG
+UCLA ID# 205452321
+
+a.
+When I was using the codeboard.io website to check my codes, my program was aborted and I got a warning: “terminate called after throwing an instance of 'std::out_of_range'
+  what():  basic_string::at: __n (which is 0) >= this->size() (which is 0)
+Aborted”. However, I had no idea about why this would happen. I viewed the warning and had a brief clue that there must be somewhere I accessed to an index which is equal to or larger than the length of vendingstring. Therefore, I included #include <cassert> at the beginning and inserted a few assertions in my main function. Yet I still failed to determine my mistake. Suddenly I noticed the warning stated that “basic_string::at: __n (which is 0) >= this->size() (which is 0)”, so I thought maybe a string of zero length, which is invalid, was not considered in my program. So I tried assert(isValidVendingMachineString("") == false); in my main function, and therefore I could locate the problem and modify my codes. I also used the same method to determine the case where the vendingstring is “R”.
+
+b.
+My bool isValidVendingMachineString(string vendingstring); function is quite straight forward, I just simply listed every possible situation to determine whether a vendingstring can be invalid. If it’s invalid, then a “return false;” command, which is embedded inside each ”if” or “for” statements, would run immediately to terminate this function and return a boolean value false. If every situation is passed, then this vendingstring should be valid, so the default “return(true);” command would run to return a boolean value “true”. There are some notable assisting functions I used to support my bool isValidVendingMachineString(string vendingstring); function. The first one is bool isInStrList(string vendingstring, string strList); function, I used it to determine whether every single character in the string is valid, namely, is a character contained by the string "DMPRABCpndq$0123456789". Then a similar function is bool isInCharList(char chr, string strList);, and I used it to regulate that there can only be a single p, n, d, q, or $ following a D or M. Furthermore, bool isEnough(size_t idx, size_t tempIdx, string vendingstring); is used to determine whether at each time purchasing an item, there is enough fund deposited.
+
+My double amountSpent(string vendingstring); is the simplest one among the four functions. I just used a for loop to detect each time letter ‘P’ occurs, and used a switch statement to make increment for total amount spent.
+
+Let’s talk about int howManyItemsBought(string vendingstring); earlier than changeReturned. Because this function is quite similar to double amountSpent(string vendingstring);, and it only detects each time letter ‘P’ occurs, and for each time ‘P’ occurs, the number of item purchased increase by 1.
+
+Finally, double changeReturned(string vendingstring); function. This function somehow resembles to a part in bool isValidVendingMachineString(string vendingstring); function where I determine whether there are enough fund to make a purchase. However, a difficulty is that each time letter ‘R’ appears, the cost and deposit have to reset to zero, but not the final ‘R’. Therefore, I used “substr” function to get the substring 1. from the last ‘R’ to the end of the string if vendingstring is not ending with ‘R’, or 2. from the second-to-last ‘R’ to the last ‘R’ if vendingstring is ending with ‘R’. Then I used double amountDeposited(string vendingstring); double amountSpent(string vendingstring); double substrAmountSpent(string vendingstring); functions to get the change returned, just like how I determined if there is enough money in the main function.
+
+c.
+1. “” //empty string should be invalid.
+2. “R” //a single letter R should be valid.
+3. “M$D$M$PA1PA2” //valid string.
+4. “M$D$M$PA1PA2RM$D$PA1PA2R” //multiple R contained in the string.
+5. “M$D$PA1PA2RM$D$PA1M$M$PA2RRR” //multiple R at the ending of the string.
+6. “M$D$PA1PA2RM$D$PA1M$M$PA2R” //test if the program would correctly output 2.0.
+7. “M$PA1PA2” //invalid because of no enough fund.
+8. “M$D$PA1 PA2” //invalid because containing whitespaces.
+9. “M$PxA1PA2” //invalid because containing a bad character x.
+10. “D$$R” //invalid because have 2 $ after D.
+11. “PA1M$R” //invalid because not beginning with either D, M, or R.
+12. “MMnR” //invalid because no currency after M.
+13. “M$M$PA11R” //invalid because more than one digit after A.
+14. “M$D$1R” //invalid because digits are not after A or B or C.
+15. “M$PA1$R” //invalid because $ is not right after M or D.
+16. “M$M$” //invalid because ending with neither R or purchase.
+17. “M$M$R” //valid because can contain no purchase.
+

@@ -1,0 +1,17 @@
+Ken DENG
+UCLA ID# 205452321
+
+a. 
+The first time I used “cin” instead of “getline(can, s)”. Then I realized that there might be two words separated by a whitespace such like when entering “Just One”, so simply using “cin” would cause errors. Moreover, another obstacle is that I encountered a logic problem that I originally get the string inputs for the prompts firstly, and then verify whether they are valid one by one. I would not say that it is wrong, but it is surely too redundant and hard to check visually. Therefore, I finally made it to use if, else if, and else to optimize my program.
+
+b. 
+Invalid input of membership plan (“yes”, “Adult”, “Everyday”, “Just One”, “Yes”, “Yes”)
+Invalid input of type of membership (“Basic”, “Okay”, “Everyday”, “Just One”, “Yes”, “Yes”)
+Invalid input of membership days (“Basic”, “Adult”, “Rabbit”, “Just One”, “Yes”, “Yes”)
+Invalid input of facilities choice (“Basic”, “Adult”, “Everyday”, “Tiger”, “Yes”, “Yes”)
+Invalid input of autopay (“Basic”, “Adult”, “Everyday”, “Just One”, “Sure”, “Yes”)
+Invalid input of paperless billing (“Basic”, “Adult”, “Everyday”, “Just One”, “Yes”, “Nope”)
+Invalid input of multiple prompts at the same time (“Basic”, “Infant”, “Everyday”, “All Over The World”, “Yes”, “Nope”)
+Valid input for every prompt (“Basic”, “Adult”, “Everyday”, “Just One”, “Yes”, “No”)
+Another set of valid input for every prompt (“Executive”, “Child”, “Even”, “Regional”, “No”, “Yes”)
+Another set of valid input for every prompt (“Executive”, “Senior”, “Odd”, “National”, “No”, “Yes”)

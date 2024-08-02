@@ -1,0 +1,136 @@
+Ken DENG
+UCLA ID# 205452321
+
+A.
+I was continuously falling at testing game 3. The reason is I was quite confused with the function “Move Board::getMoveForRound( int round ) const” . The original skeleton code was creating a new Move class type m, and I actually do not know what shall I do. Then I reviewed the lecture video again, and I realized that there is a private member “Move  moves[ TOTALROUNDSALLOWED ];” stored inside the Board class, and I simply should store each single move inside moves. So as the function “Score Board::getScoreForRound( int round ) const”.
+
+B.
+// test code 1
+    
+    Piece p; //test for the Piece class
+    assert( p.getLetter() == NOTVALID );
+    p = Piece( "M" );
+    assert( p.getLetter() == M );
+    assert( p.getLetterAsString() == "M" );
+
+    Move m; //test for the Move class
+    p = m.getPiece( 0 );
+    assert( p.getLetter() == NOTVALID );
+    m.setPieces( "world" );
+    p = m.getPiece( 2 );
+    assert( p.getLetter() == R );
+    m.setPiece( 2, 'j' );
+    p = m.getPiece( 2 );
+    assert( p.getLetter() == J );
+
+    Score s; //test for the Score class
+    assert( s.isExactMatch()  == false );
+    assert( s.getAnswer( 2 ) == WRONG );
+    m.setPieces( "hello" );
+    Move theAnswer;
+    theAnswer.setPieces( "stank" );
+    s = Score( m, theAnswer );
+    assert( s.isExactMatch() == false );
+    assert( s.to_string() == "_____" );
+    theAnswer.setPieces( "hello" );
+    s = Score( m, theAnswer );
+    assert( s.isExactMatch() == true );
+    assert( s.to_string() == "RRRRR" );
+
+    Board b; //test for the Board class
+    assert( b.getCurrentRound() == 0 );
+    m.setPieces( "hello" );
+    theAnswer.setPieces( "logic" );
+    s = Score( m, theAnswer );
+    b.endRound( m, s );
+    assert( b.getCurrentRound() == 1 );
+    assert( b.getMoveForRound( 0 ).to_string() == "HELLO" );
+    assert( b.getScoreForRound( 0 ).to_string() == "__M_M" );
+
+    
+    //test code 2
+    
+	//test if the game would be operated correctly
+    Wordle game1( "angel" ); //create a cheating Wordle class variable game1 with string “angel”
+    Score s1;
+    Move m1;
+    Board board;
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 ); //test if .endRound() would operate correctly
+    board = game1.getBoard(); //test if .getBoard() would operate correctly
+    assert(board.getCurrentRound() == 1); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 2); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 3); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 4); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 5); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 6); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 7); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    m1 = game1.play( "acute" ); //test for entry “acute”
+    s1 = game1.endRound( m1 );
+    board = game1.getBoard();
+    assert(board.getCurrentRound() == 8); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game1.gameIsOver() == true);
+    assert(game1.determineGameOutcome() == GAMELOST); //test if the game would lose correctly when running out of attempts
+    
+     
+    //test code 3
+    
+    Wordle game2( "start" ); //create a cheating Wordle class variable game2 with string “start”
+    Score s2;
+    Move m2;
+    Board board2;
+    m2 = game2.play( "hello" ); //test for a wrong entry “hello”
+    s2 = game2.endRound( m2 );
+    board2 = game2.getBoard();
+    assert(board2.getCurrentRound() == 1); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game2.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    assert(s2.to_string() == "_____"); //test if the answer testing logic is correct
+    m2 = game2.play( "other" ); //test for a wrong entry “other”
+    s2 = game2.endRound( m2 );
+    board2 = game2.getBoard();
+    assert(board2.getCurrentRound() == 2); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game2.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    assert(s2.to_string() == "_R__M"); //test if the answer testing logic is correct
+    m2 = game2.play( "stair" ); //test for a wrong entry “stair”
+    s2 = game2.endRound( m2 );
+    board2 = game2.getBoard();
+    assert(board2.getCurrentRound() == 3); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game2.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    assert(s2.to_string() == "RRR_M"); //test if the answer testing logic is correct
+    m2 = game2.play( "stare" ); //test for a wrong entry “stare”
+    s2 = game2.endRound( m2 );
+    board2 = game2.getBoard();
+    assert(board2.getCurrentRound() == 4); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game2.gameIsOver() == false); //test if the game would not be stopped incorrectly
+    assert(s2.to_string() == "RRRR_"); //test if the answer testing logic is correct
+    m2 = game2.play( "start" ); //test for the correct entry “start”
+    s2 = game2.endRound( m2 );
+    board2 = game2.getBoard();
+    assert(board2.getCurrentRound() == 5); //test if .getCurrentRound() would provide the correct current round number 
+    assert(game2.gameIsOver() == true); //test if the game would be stopped correctly when the correct word is entered
+    assert(s2.to_string() == "RRRRR"); //test if the answer testing logic is correct

@@ -1,0 +1,9 @@
+CS 31 Project 1
+Ken DENG
+UCLA ID# 205452321
+
+1. In step 2, I created a project with the original code. And in step 5, I entered “20”, “-20”, “0” respectively for the tree prompts “How many games has your team won?”, “How many games has your team lost”, and “How many games has your team tied”. Therefore, even though they are all integers, but “-20” is a negative integer, and that turns the denominator of the expression	“double winPercentage = 100.0 * won / (won + lost + tied);” into 0, which is not a valid value for denominator. Hence, this set of values inputted are nonsensical.
+
+2. In step 6, I changed the position of the operator “*” and “/”, which changes the original expression “double winPercentage = 100.0 * won / (won + lost + tied);” into “double winPercentage = 100.0 / won * (won + lost + tied);” Therefore, even if we enter some correct inputs for each prompt, as long as the variables “lost” or “tied” are not zero, we will get a value exceeding 1, which is not reasonable at all. For example, if I enter “soccer”, “20”, “10”, “10” respectively for the four prompts, the final result I get would be “200.0% of the soccer games you played were won!”, yet the correct result should be “50.0% of the soccer games you played were won!”. However, this mistake would only cause logic error, but the project can still be built successfully.
+
+3. In step 7, I introduced two compile errors. The first one is deleting the line “using namespace std;”. By doing so, the functions “cin” and “cout” cannot run properly, as the program says ”Use of undeclared identifier ‘cin’” and “Use of undeclared identifier ‘cout’”. This error makes the project unable to be built. The second one is changing “int main()” into “string main()”, which changes the return type of the main function from int into string. However, ‘main’ must return ‘int’, so the project cannot be built successfully.

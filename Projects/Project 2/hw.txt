@@ -1,0 +1,82 @@
+Ken DENG
+UCLA ID# 205452321
+
+//All the answers starts from the line below the question numbers.
+
+1. 
+endlendl
+endline 
+
+2.
+It prints a stair of “#”, where there are (entered number - 1) pieces of whitespace before the first “#”, and zero whitespace before the last “#”. Generally, in the n-th line from bottom to top, where n is an integer in the closed interval [1, number entered], there are n-1 whitespaces and then a “#”.
+
+3.
+#include <iostream>
+    using namespace std;
+
+    int main()
+    {
+        int len;
+
+        cout << "Enter a number: ";
+        cin >> len;
+
+        for (int i = 0; i < len; i++)
+        {
+            
+            int j = i + 1;
+            while ( j != len) {
+                cout << " ";
+                j++;
+            }
+            cout << "#" << endl;
+        }
+            return( 0 );
+    }
+
+4.
+#include <iostream>
+    using namespace std;
+
+    int main()
+    {
+        int len;
+
+        cout << "Enter a number: ";
+        cin >> len;
+        
+        if (len > 0) {
+            int i = 0;
+            do {
+                int j = i + 1;
+                while ( j != len) {
+                    cout << " ";
+                    j++;
+                }
+                cout << "#" << endl;
+                ++i;
+            } while (i < len);
+        }
+        
+    }
+
+5.
+switch(weekday) {
+    case 1:
+        cout << "rainy days and mondays get me down";
+        break;
+    case 2:
+        cout << "ruby tuesday";
+        break;
+    case 6:
+        cout << "wonderful weekend";
+        break;
+    case 7:
+        cout << "wonderful weekend";
+        break;
+    default:
+        cout << "regular day";
+}
+
+
+

@@ -1,0 +1,102 @@
+Ken DENG
+UCLA ID# 205452321
+
+a.
+The first time I pasted my codes to codeboard.io, I failed in almost all the cases of int countFloatingPointValues(const string array[], int n), that as long as the case contains a point symbol ‘.’, my program fails to correctly recognize it. When I am trying to fix it, I used debug mode and I found out each time when using different datas to step into the function, if the number has a point symbol in the end, like “xx.”, my for loop would suddenly stop, without counting it. Therefore, I knew the error was in my if-statements. After observing, I realized I incorrectly used “else if” instead of “if” to check the expression “(pointNum == 2)” in line 220. After changing this, my program passed all the cases.
+
+b.
+int locateMaximum( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 ); //n < 0
+
+int locateMaximum( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 ); //n = 0
+
+int locateMaximum( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 ); //regular case
+
+int locateMaximum( {“tom”, “Tom”, “Jerry”, “jerry”, “Tom”}, 5 ); //two same elements occur
+
+int locateMaximum( {“spike”, “Tom”, “Jerry”, “jerry”, “spike”, “Tom”}, 6 ); //two same elements occur
+
+int locateMaximum( {“spike”, “Tom”, “Jerry”, “jerry”, “spike”, “Tom”}, 5 ); //n less than the length of the array
+
+bool matchingValuesTogether( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 ); //n < 0
+
+bool matchingValuesTogether( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 ); //n = 0
+
+bool matchingValuesTogether( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 ); //regular case
+
+bool matchingValuesTogether( {“tom”, “tom”, “Tom”, “Jerry”, “jerry”}, 5 ); //two consecutive same values
+
+bool matchingValuesTogether( {“tom”, “tom”, “tom”, “Tom”, “Jerry”, “jerry”}, 5 ); //three consecutive same values
+
+bool matchingValuesTogether( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 5 ); //two same values but not consecutive
+
+bool matchingValuesTogether( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 4 ); //n less than the length of the array
+
+
+bool hasDuplicates( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 ); //n < 0
+
+bool hasDuplicates( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 ); //n = 0
+
+bool hasDuplicates( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 ); //regular case
+
+bool hasDuplicates( {“tom”, “tom”, “Tom”, “Jerry”, “jerry”}, 5 ); //duplicates occur
+
+bool hasDuplicates( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 5 ); //duplicates occur case 2
+
+bool hasDuplicates( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 4 ); //n less than the length of the array
+
+string majorityElement( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 ); //n < 0
+
+string majorityElement( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 ); //n = 0
+
+string majorityElement( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 ); //regular case
+
+string majorityElement( {“tom”, “Tom”, “Jerry”, “jerry”, “Tom”, “Tom”}, 6 ); //majority occurs
+
+string majorityElement( {“tom”, “Tom”, “Jerry”, “jerry”, “Tom”, “Tom”}, 5 ); //n less than the length of the array
+
+bool hasReverse( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 ); //n < 0
+
+bool hasReverse( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 ); //n = 0
+
+bool hasReverse( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 ); //regular case
+
+bool hasReverse( {“tom”, “Tom”, “Jerry”, “jerry”, “moT”}, 5 ); //inverse occurs
+
+bool hasReverse( {“tom”, “Tom”, “Jerry”, “jerry”, “moT”}, 4 ); //n less than the length of the array
+
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”}, -20 , “jerry” ); //n < 0
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”}, 0 , “jerry” ); //n = 0
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 , “jerry” ); //regular case
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”, “jerry”}, 5 , “jerry” ); //2 targets included in array
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”}, 4 , “spike” ); //no target included in array
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 5 , “tom” ); //n less than the length of the array
+
+
+int findLastOccurrence( {“tom”, “Tom”, “Jerry”, “jerry”, “tom”}, 4 , “tom” ); //n less than the length of the array
+
+
+int countFloatingPointValues( { "55", "4A", "+35", "-55.", "15.0", "A12A", "15.0" }, -20 ); //n < 0
+
+int countFloatingPointValues( { "55", "4A", "+35", "-55.", "15.0", "A12A", "15.0" }, 0 ); //n = 0
+
+int countFloatingPointValues( { "55", "4A", "+35", "-55.", "15.0", "A12A", "15.0" }, 7 ); //regular case
+
+int countFloatingPointValues( { "55", "4A", "+35", "-55.", "15.0", "A12A", "15.0" }, 3 ); //n less than the length of the array
+
+
+int countFloatingPointValues( { "55", "4A", "+35", "-55.", "15.0", "A12A", "15.0" }, 4 ); //n less than the length of the array
+
+
+int replaceAll( {“tom”, “Tom”, “Jerry”, “jerry”}, -20, ‘o’, ‘i’ ); //n < 0
+
+int replaceAll( {“tom”, “Tom”, “Jerry”, “jerry”}, 0, ‘o’, ‘i’ ); //n = 0
+
+int replaceAll( {“tom”, “Tom”, “Jerry”, “jerry”}, 4, ‘o’, ‘i’ ); //regular case
+
+int replaceAll( {“tom”, “Tom”, “Jerry”, “jerry”}, 1, ‘o’, ‘i’ ); //n less than the length of the array
